@@ -80,18 +80,18 @@ pub fn parse_struct(
         //     //         let ident = &p.ident;
         //     //         let ident_str = p.ident.to_string();
 
-        //     //         quote!((std::borrow::Cow::Borrowed(#ident_str).into(), <#ident as #crate_ref::Type>::definition(types))).into()
+        //     //         quote!((std::borrow::Cow::Borrowed(#ident_str).into(), <(#ident) as #crate_ref::Type>::definition(types))).into()
         //     //     }
         //     // });
 
         //     // quote!(#crate_ref::datatype::inline::<#field_ty>(types))
         //     todo!();
         // } else {
-        //     quote!(<#field_ty as #crate_ref::Type>::definition(types))
+        //     quote!(<(#field_ty) as #crate_ref::Type>::definition(types))
         // }
 
         // TODO: How can we passthrough the inline to this reference?
-        quote!(<#field_ty as #crate_ref::Type>::definition(types))
+        quote!(<(#field_ty) as #crate_ref::Type>::definition(types))
     } else {
         let fields = match &data.fields {
             Fields::Named(_) => {
